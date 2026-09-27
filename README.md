@@ -17,5 +17,5 @@ Hospedado na VPS Hostinger (EasyPanel), projeto `tora_norte`, serviço `site`, c
 Para atualizar, envie os arquivos para essa pasta. Não precisa implantar de novo:
 
 ```bash
-tar -cf - index.html styles.css script.js assets/fotos assets/*.webp | ssh root@srv1510217.hstgr.cloud 'tar -xf - -C /srv/tora_norte/site'
+tar -cf - index.html styles.css script.js assets/fotos assets/*.webp | ssh <usuario>@<servidor> 'tar -xf - -C /srv/tora_norte/site'
 ```
