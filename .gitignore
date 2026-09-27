@@ -1,0 +1,4 @@
+node_modules/
+.claude/
+# fotos originais do Instagram (não usadas no site; as versões tratadas estão em assets/fotos)
+assets/ig/
