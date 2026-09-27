@@ -12,10 +12,16 @@ Abre em http://localhost:4174.
 
 ## Publicação
 
-Hospedado na VPS Hostinger (EasyPanel), projeto `tora_norte`, serviço `site`, com o nginx servindo a pasta `/srv/tora_norte/site`, montada por Bind Mount.
+Hospedado numa VPS com EasyPanel, projeto `tora_norte`, serviço `site` (`nginx:1.27-alpine`), com duas montagens (Bind Mount):
 
-Para atualizar, envie os arquivos para essa pasta. Não precisa implantar de novo:
+- `/srv/tora_norte/site` → `/usr/share/nginx/html` (os arquivos do site)
+- `/srv/tora_norte/nginx/default.conf` → `/etc/nginx/conf.d/default.conf` (o [`deploy/nginx.conf`](deploy/nginx.conf): gzip e cache)
+
+O CSS e o JS são servidos com cache de um ano. Por isso, **depois de mexer em `styles.css` ou `script.js`, rode `npm run versionar`**: o script troca o `?v=` no `index.html` e força os navegadores a buscar a versão nova.
+
+Para atualizar, envie os arquivos para a pasta do site. Não precisa implantar de novo:
 
 ```bash
+npm run versionar
 tar -cf - index.html styles.css script.js assets/fotos assets/*.webp | ssh <usuario>@<servidor> 'tar -xf - -C /srv/tora_norte/site'
 ```
